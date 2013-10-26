@@ -31,7 +31,7 @@ foreach (error_file ${ERROR_INC})
 	file(APPEND "${ERROR_INC_FILE}" "${file_contents}")
 endforeach (error_file ${ERROR_INC})
 
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../" "../../../HHVM-to-LLVM")
 
 set(CMAKE_CURRENT_BINARY_DIR "${CMAKE_SOURCE_DIR}/bin")
 

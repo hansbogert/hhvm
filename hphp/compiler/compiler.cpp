@@ -14,6 +14,8 @@
    +----------------------------------------------------------------------+
 */
 
+#include <hhll/main.h>
+
 #include "hphp/compiler/compiler.h"
 #include "hphp/compiler/package.h"
 #include "hphp/compiler/analysis/analysis_result.h"
@@ -218,6 +220,7 @@ int prepareOptions(CompilerOptions &po, int argc, char **argv) {
      "analyze | "
      "php | "
      "hhbc | "
+     "llvm | "
      "filecache | "
      "run (default)")
     ("format,f", value<string>(&po.format),
@@ -618,6 +621,8 @@ int process(const CompilerOptions &po) {
     ret = phpTarget(po, ar);
   } else if (po.target == "hhbc") {
     ret = hhbcTarget(po, ar, fileCacheThread);
+  } else if (po.target == "llvm") {
+    ret = hhll::llvm_target(ar);
   } else if (po.target == "run") {
     ret = runTargetCheck(po, ar, fileCacheThread);
   } else if (po.target == "filecache") {
